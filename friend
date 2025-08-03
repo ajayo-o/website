@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Friendship Day</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Poppins Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom Keyframe Animations */
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        @keyframes pulse-light {
+            0%, 100% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #a4c6e1; }
+            50% { box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #a4c6e1; }
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .confetti-item {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: transparent;
+            border-radius: 50%;
+            opacity: 0;
+            animation: confetti-fall 10s linear infinite;
+        }
+        .heart {
+            background-color: #a4c6e1; /* Pastel blue */
+            transform: rotate(-45deg);
+        }
+        .heart::before, .heart::after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background-color: #a4c6e1;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -7.5px;
+            left: 0;
+        }
+        .heart::after {
+            top: 0;
+            left: 7.5px;
+        }
+        .blinking-link {
+            animation: twinkle 1s infinite;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Page 1: Welcome -->
+    <div id="page1" class="page bg-pink-100 text-gray-800 p-8 md:p-12 lg:p-16 rounded-xl shadow-lg text-center max-w-lg mx-auto flex flex-col items-center transition-all duration-500 ease-in-out">
+        <!-- Confetti animation layer -->
+        <div class="absolute inset-0 overflow-hidden -z-10">
+            <div class="confetti-item heart" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="confetti-item heart bg-white" style="left: 30%; animation-delay: 2s;"></div>
+            <div class="confetti-item heart" style="left: 50%; animation-delay: 4s;"></div>
+            <div class="confetti-item heart bg-white" style="left: 70%; animation-delay: 6s;"></div>
+            <div class="confetti-item heart" style="left: 90%; animation-delay: 8s;"></div>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Welcome to Friendship Day</h1>
+        <p class="text-base md:text-lg mb-6">What's your name, my friend?</p>
+        <p class="text-sm text-gray-600 mb-6">Tell me your name, and I'll tell you how much I appreciate our friendship.</p>
+        <input id="nameInput" type="text" placeholder="Enter your name..." class="w-full max-w-xs px-4 py-2 mb-6 text-center border-2 border-gray-300 rounded-full focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400">
+        <button id="nextBtn" class="bg-purple-500 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:bg-purple-600 transition-colors duration-300 transform hover:scale-105 active:scale-95">
+            Click This
+        </button>
+    </div>
+
+    <!-- Page 2: Happy Friendship Day! -->
+    <div id="page2" class="page hidden bg-pink-100 text-gray-800 p-8 md:p-12 lg:p-16 rounded-xl shadow-lg text-center max-w-lg mx-auto flex flex-col items-center relative transition-all duration-500 ease-in-out">
+        <!-- Blinking lights border -->
+        <div class="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+            <div class="absolute inset-0 border-4 border-white rounded-xl" style="animation: pulse-light 2s infinite ease-in-out;"></div>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Happy Friendship Day, my friend <span id="userName" class="text-purple-600"></span>!</h1>
+        <p class="text-base md:text-lg mb-8">This special day is a reminder of the amazing bond we share.</p>
+        <h2 id="friendListLink" class="text-xl md:text-2xl font-bold text-gray-700 cursor-pointer blinking-link">
+            My Friend List
+        </h2>
+    </div>
+
+    <!-- Page 3: My Only Friend -->
+    <div id="page3" class="page hidden bg-pink-100 text-gray-800 p-8 md:p-12 lg:p-16 rounded-xl shadow-lg text-center max-w-lg mx-auto flex flex-col items-center transition-all duration-500 ease-in-out">
+        <!-- The new image from the URL is placed here -->
+        <img src="https://w0.peakpx.com/wallpaper/219/45/HD-wallpaper-friends-boys-girls-white-anime.jpg" 
+             alt="Two friends holding hands" 
+             class="w-full max-w-xs rounded-xl mb-6 border-4 border-white shadow-md"
+             onerror="this.onerror=null;this.src='https://placehold.co/400x400/FFD1DC/6B46C1?text=Best+Friends'">
+        
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">My Only Friend is <span id="userName2" class="text-purple-600"></span></h1>
+        <p class="text-base md:text-lg mb-4">I only have you as my friend!</p>
+        <p class="text-sm text-gray-600">I don't need a list of friends because you're the only one that matters to me. Thanks for being you!</p>
+    </div>
+
+    <script>
+        // Get references to all the pages and elements
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const page3 = document.getElementById('page3');
+        const nameInput = document.getElementById('nameInput');
+        const nextBtn = document.getElementById('nextBtn');
+        const userNameSpan = document.getElementById('userName');
+        const userNameSpan2 = document.getElementById('userName2');
+        const friendListLink = document.getElementById('friendListLink');
+
+        // Function to navigate to page 2
+        function goToPage2() {
+            const name = nameInput.value || "Friend"; // Use "Friend" if the input is empty
+            userNameSpan.textContent = name;
+            page1.classList.add('hidden');
+            page2.classList.remove('hidden');
+        }
+
+        // Function to navigate to page 3
+        function goToPage3() {
+            const name = nameInput.value || "Friend";
+            userNameSpan2.textContent = name;
+            page2.classList.add('hidden');
+            page3.classList.remove('hidden');
+        }
+
+        // Add event listeners
+        nextBtn.addEventListener('click', goToPage2);
+        friendListLink.addEventListener('click', goToPage3);
+        
+        // Allow pressing Enter in the input field to proceed
+        nameInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                goToPage2();
+            }
+        });
+    </script>
+</body>
+</html>
